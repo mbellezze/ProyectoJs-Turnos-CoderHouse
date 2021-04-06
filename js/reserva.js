@@ -14,6 +14,7 @@ function datosPersonales() {
     }
 }
 
+
 /* FUNCION PARA OBTENER LA FECHA EN LA QUE QUIERE RESERVAR EL TURNO */
 function reservaTurno() {
     var fecha = prompt("Ingrese la fecha que desea reservar (formato ddmmaaaa):");
@@ -27,7 +28,22 @@ function reservaTurno() {
     }
 }
 
+/* CLASE PARA ASIGNAR PACIENTES NUEVOS */
+class Paciente {
+    constructor(datos, fecha) {
+        this.datos = datos;
+        this.fecha = fecha;
+    }
+    confirmacion() {
+        alert(this.datos + " confirmamos su turno para la fecha " + this.fecha);
+    }
+}
+
+
 /* LLAMADA A LAS VARIABLES */
-var datos = datosPersonales();
-var fecha2 = reservaTurno();
-alert(datos + " confirmamos su turno para la fecha " + fecha2);
+var persona = new Paciente(datosPersonales(), reservaTurno());
+persona.confirmacion();
+
+/*var datos = datosPersonales();*/
+/*var fecha2 = reservaTurno();*/
+/*alert(datos + " confirmamos su turno para la fecha " + fecha2);*/
