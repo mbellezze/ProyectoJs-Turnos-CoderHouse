@@ -1,3 +1,8 @@
+/* VARIABLES GLOBALES */
+var personas = ["Juan Gonzalez", "Rodolfo Perez", "Maria Vazques", "Gimena Ferreira", "Nelson Barraza"];
+var reservas = ["12032021", "20042021", "10052021"];
+
+
 /* FUNCION PARA OBTENER EL NOMBRE Y EL APELLIDO */
 function datosPersonales() {
     var nombre = prompt("Ingrese su nombre:");
@@ -5,6 +10,8 @@ function datosPersonales() {
     while ((nombre !== " " || apellido !== " ") || (!isNaN(nombre) || !isNaN(apellido))) {
         if ((nombre !== " " && apellido !== " ") && (isNaN(nombre) && isNaN(apellido))) {
             var completo = nombre + " " + apellido;
+            personas.push(completo);
+            console.log(personas);
             return completo;
         } else {
             alert("Debe ingresar correctamente sus datos");
@@ -20,6 +27,8 @@ function reservaTurno() {
     var fecha = prompt("Ingrese la fecha que desea reservar (formato ddmmaaaa):");
     while ((fecha !== 0) || (!isNaN(fecha))) {
         if ((fecha > 0) && (!isNaN(fecha))) {
+            reservas.push(fecha);
+            console.log(reservas);
             return fecha;
         } else {
             alert("Ingrese una fecha correcta");
@@ -35,7 +44,11 @@ class Paciente {
         this.fecha = fecha;
     }
     confirmacion() {
-        alert(this.datos + " confirmamos su turno para la fecha " + this.fecha);
+        /* alert(this.datos + " confirmamos su turno para la fecha " + this.fecha); */
+        var traerNodo = document.getElementById("agregar");
+        var confirmar = document.createElement("p");
+        confirmar.innerHTML = this.datos + " confirmamos su turno para la fecha " + this.fecha;
+        traerNodo.appendChild(confirmar);
     }
 }
 
