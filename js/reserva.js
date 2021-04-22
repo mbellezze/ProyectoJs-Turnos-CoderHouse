@@ -52,8 +52,17 @@ class Paciente {
     }
 }
 
+/* FUNCION PARA VALIDAR EL FORMULARIO */
+function validarFormulario(event) {
+    event.preventDefault();
+    alert("Formulario enviado!");
+}
 
-/* LLAMADA A LAS VARIABLES */
+/* ENVIAR FORMULARIO */
+var miformulario = document.getElementById("formulario");
+miformulario.addEventListener("submit", validarFormulario);
+
+/* LLAMADA A LAS FUNCIONES */
 var persona = new Paciente(datosPersonales(), reservaTurno());
 persona.confirmacion();
 
