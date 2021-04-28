@@ -1,71 +1,39 @@
 /* VARIABLES GLOBALES */
-var personas = ["Juan Gonzalez", "Rodolfo Perez", "Maria Vazques", "Gimena Ferreira", "Nelson Barraza"];
-var reservas = ["12032021", "20042021", "10052021"];
+var guardarReserva = [];
 
 
-/* FUNCION PARA OBTENER EL NOMBRE Y EL APELLIDO */
-function datosPersonales() {
-    var nombre = prompt("Ingrese su nombre:");
-    var apellido = prompt("Ingrese su apellido:");
-    while ((nombre !== " " || apellido !== " ") || (!isNaN(nombre) || !isNaN(apellido))) {
-        if ((nombre !== " " && apellido !== " ") && (isNaN(nombre) && isNaN(apellido))) {
-            var completo = nombre + " " + apellido;
-            personas.push(completo);
-            console.log(personas);
-            return completo;
-        } else {
-            alert("Debe ingresar correctamente sus datos");
-        }
-        var nombre = prompt("Ingrese su nombre:");
-        var apellido = prompt("Ingrese su apellido:");
-    }
+/* FUNCIÓN PARA TRAER LOS VALORES DE LA RESERVA */
+function traerDatos() {
+    var completo = document.getElementById("nomApe").value;
+    var numCel = document.getElementById("cel").value;
+    var casillaEmail = document.getElementById("mail").value;
+    guardarReserva.push({nombre: completo, celular: numCel, correo: casillaEmail});
+    console.log(guardarReserva);
 }
 
 
-/* FUNCION PARA OBTENER LA FECHA EN LA QUE QUIERE RESERVAR EL TURNO */
-function reservaTurno() {
-    var fecha = prompt("Ingrese la fecha que desea reservar (formato ddmmaaaa):");
-    while ((fecha !== 0) || (!isNaN(fecha))) {
-        if ((fecha > 0) && (!isNaN(fecha))) {
-            reservas.push(fecha);
-            console.log(reservas);
-            return fecha;
-        } else {
-            alert("Ingrese una fecha correcta");
-        }
-        var fecha = prompt("Ingrese la fecha que desea reservar (formato ddmmaaaa):");
-    }
+/* FUNCION PARA VALIDAR LA RESERVA */
+function validarReserva(event) {
+    event.preventDefault();
+    traerDatos();
+    alert("Turno reservado");
+    document.getElementById("reserva").reset();
 }
 
-/* CLASE PARA ASIGNAR PACIENTES NUEVOS */
-class Paciente {
-    constructor(datos, fecha) {
-        this.datos = datos;
-        this.fecha = fecha;
-    }
-    confirmacion() {
-        /* alert(this.datos + " confirmamos su turno para la fecha " + this.fecha); */
-        var traerNodo = document.getElementById("agregar");
-        var confirmar = document.createElement("p");
-        confirmar.innerHTML = this.datos + " confirmamos su turno para la fecha " + this.fecha;
-        traerNodo.appendChild(confirmar);
-    }
-}
+
+/* ENVIAR RESERVA */
+var miReserva = document.getElementById("reserva");
+miReserva.addEventListener("submit", validarReserva);
+
 
 /* FUNCION PARA VALIDAR EL FORMULARIO */
 function validarFormulario(event) {
     event.preventDefault();
     alert("Formulario enviado!");
+    document.getElementById("formulario").reset();
 }
 
+
 /* ENVIAR FORMULARIO */
-var miformulario = document.getElementById("formulario");
-miformulario.addEventListener("submit", validarFormulario);
-
-/* LLAMADA A LAS FUNCIONES */
-var persona = new Paciente(datosPersonales(), reservaTurno());
-persona.confirmacion();
-
-/*var datos = datosPersonales();*/
-/*var fecha2 = reservaTurno();*/
-/*alert(datos + " confirmamos su turno para la fecha " + fecha2);*/
+var miFormulario = document.getElementById("formulario");
+miFormulario.addEventListener("submit", validarFormulario);
