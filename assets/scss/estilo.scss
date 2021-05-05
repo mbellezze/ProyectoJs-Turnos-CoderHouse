@@ -44,6 +44,48 @@
 }
 
 .modifCalendario {
+  flex-direction: column;
+  border: 10px solid lightgreen;
+  .calendario-header {
+    background-color: lightgreen;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  .calendario-flechas {
+    background-color: lightgreen;
+    padding-bottom: 5px;
+    i {
+      margin-left: 10px;
+    }
+  }
+  .calendario-dias {
+    flex-direction: column;
+    width: 140px;
+    height: 500px;
+    border-left: 1px solid lightgray;
+    h6 {
+      text-align: center;
+    }
+    span {
+      font-size: 1rem;
+    }
+  }
+  .calendario-tiempo {
+    flex-wrap: wrap;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    a:hover {
+      background-color: lightgreen;
+    }
+  }
+  .calendario-horario {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 2px 6px 2px 6px;
+  }
 }
 /* ESTILOS PARA EL MAPA EN LA PESTAÑA CONTACOS */
 .modifMapa {
@@ -52,7 +94,7 @@
 
 /* ESTILOS PARA EL FOOTER */
 .footer {
-  background-image: linear-gradient(darkslategrey, darkslategrey);
+  background-color: darkslategrey !important;
   padding: 20px 0 5px 0 !important;
   width: 100%;
   height: auto;
@@ -76,4 +118,12 @@
     justify-content: center;
     align-items: flex-end;
   }
+}
+
+/* ESTILOS PARA LA PÁGINA RESERVA */
+.formReserva {
+}
+
+.divPrincipalReserva {
+  margin-bottom: 60px;
 }

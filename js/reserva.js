@@ -1,4 +1,7 @@
 /* VARIABLES GLOBALES */
+var profesionales = ["Esteban Quinteros"];
+var dinero = ["Efectivo o Débito"];
+var ubicacion = ["Calle 3 n° 1342"];
 var guardarReserva = [];
 
 
@@ -21,9 +24,9 @@ function validarReserva(event) {
 }
 
 
-/* ENVIAR RESERVA */
+/* ENVIAR RESERVA 
 var miReserva = document.getElementById("reserva");
-miReserva.addEventListener("submit", validarReserva);
+miReserva.addEventListener("submit", validarReserva);*/
 
 
 /* FUNCION PARA VALIDAR EL FORMULARIO */
@@ -34,6 +37,20 @@ function validarFormulario(event) {
 }
 
 
-/* ENVIAR FORMULARIO */
+/* ENVIAR FORMULARIO 
 var miFormulario = document.getElementById("formulario");
-miFormulario.addEventListener("submit", validarFormulario);
+miFormulario.addEventListener("submit", validarFormulario);*/
+
+
+/* ESCRIBIR DETALLES DE VISITA EN EL DOM */
+function detalles() {
+    $("#agregar").append(`<p> ${profesionales[0]} </p>`);
+    $("#agregar").append(`<p> ${dinero[0]} </p>`);
+    $("#agregar").append(`<p> ${ubicacion[0]} </p>`);
+    /*var traerNodo = document.getElementById("agregar");
+    var detallar = document.createElement("p");
+    detallar.innerHTML = profesionales[0];
+    traerNodo.appendChild(detallar);*/
+}
+
+detalles();
