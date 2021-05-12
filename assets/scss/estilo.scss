@@ -44,8 +44,8 @@
 }
 
 .modifCalendario {
-  flex-direction: column;
   border: 10px solid lightgreen;
+  flex-direction: column;
   .calendario-header {
     background-color: lightgreen;
     margin: 0;
@@ -53,22 +53,17 @@
   }
   .calendario-flechas {
     background-color: lightgreen;
-    padding-bottom: 5px;
-    i {
-      margin-left: 10px;
-    }
+    padding-bottom: 10px;
   }
   .calendario-dias {
     flex-direction: column;
+    text-align: center;
     width: 140px;
     height: 500px;
     border-left: 1px solid lightgray;
-    h6 {
-      text-align: center;
-    }
-    span {
-      font-size: 1rem;
-    }
+  }
+  .calendario-titulo {
+    margin: 10px 0 20px 0;
   }
   .calendario-tiempo {
     flex-wrap: wrap;
@@ -76,15 +71,13 @@
     a {
       text-decoration: none;
       color: black;
+      border: 1px solid black;
+      margin: 5px;
+      padding: 2px 6px 2px 6px;
     }
     a:hover {
       background-color: lightgreen;
     }
-  }
-  .calendario-horario {
-    border: 1px solid black;
-    margin: 5px;
-    padding: 2px 6px 2px 6px;
   }
 }
 /* ESTILOS PARA EL MAPA EN LA PESTAÑA CONTACOS */

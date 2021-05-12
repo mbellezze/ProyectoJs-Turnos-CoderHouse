@@ -31,38 +31,34 @@
   font-family: "Josefin Slab", serif; }
 
 .modifCalendario {
-  flex-direction: column;
-  border: 10px solid lightgreen; }
+  border: 10px solid lightgreen;
+  flex-direction: column; }
   .modifCalendario .calendario-header {
     background-color: lightgreen;
     margin: 0;
     padding-bottom: 10px; }
   .modifCalendario .calendario-flechas {
     background-color: lightgreen;
-    padding-bottom: 5px; }
-    .modifCalendario .calendario-flechas i {
-      margin-left: 10px; }
+    padding-bottom: 10px; }
   .modifCalendario .calendario-dias {
     flex-direction: column;
+    text-align: center;
     width: 140px;
     height: 500px;
     border-left: 1px solid lightgray; }
-    .modifCalendario .calendario-dias h6 {
-      text-align: center; }
-    .modifCalendario .calendario-dias span {
-      font-size: 1rem; }
+  .modifCalendario .calendario-titulo {
+    margin: 10px 0 20px 0; }
   .modifCalendario .calendario-tiempo {
     flex-wrap: wrap;
     justify-content: center; }
     .modifCalendario .calendario-tiempo a {
       text-decoration: none;
-      color: black; }
+      color: black;
+      border: 1px solid black;
+      margin: 5px;
+      padding: 2px 6px 2px 6px; }
     .modifCalendario .calendario-tiempo a:hover {
       background-color: lightgreen; }
-  .modifCalendario .calendario-horario {
-    border: 1px solid black;
-    margin: 5px;
-    padding: 2px 6px 2px 6px; }
 
 /* ESTILOS PARA EL MAPA EN LA PESTAÑA CONTACOS */
 .modifMapa {

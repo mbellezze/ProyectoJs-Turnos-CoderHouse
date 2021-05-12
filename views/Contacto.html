@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Josefin+Slab&family=Poiret+One&display=swap" rel="stylesheet">  
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/7e67774f6e.js" crossorigin="anonymous"></script>
     <title>Odontología</title>
 </head>
@@ -39,44 +40,24 @@
             <div>
                 <h6>Reserve una visita</h6>
             </div>
-            <div id="calendario" id="agregar" class="d-flex modifCalendario">
-                <h4 class="d-flex justify-content-center calendario-header">Mayo</h4>
-                <div class="d-flex justify-content-center calendario-flechas">
-                    <i class="fas fa-chevron-left"></i>
-                    <i class="fas fa-chevron-right"></i>
+            <div id="calendario" class="d-flex modifCalendario">
+                <h4 id="tituloMes" class="d-flex justify-content-center calendario-header"></h4>
+                <div class="d-flex justify-content-around calendario-flechas">
+                    <i id="anterior" class="fas fa-chevron-left"></i>
+                    <i id="posterior" class="fas fa-chevron-right" onclick="diaPosterior()"></i>
                 </div>
-                <div class="d-flex justify-content-center calendario-lista">
+                <div id="diasCalend" class="d-flex justify-content-center calendario-lista">
                     <div class="d-flex calendario-dias">
-                        <h6 class="calendario-titulo">
-                            <span>Lunes</span><br>
-                            <span>02/05</span>
-                        </h6>
-                        <div class="d-flex calendario-tiempo">
-                            <a class="calendario-horario" href="DatosReserva.html">09:30</a>
-                            <a class="calendario-horario" href="DatosReserva.html">10:00</a>
-                            <a class="calendario-horario" href="DatosReserva.html">10:30</a>
-                            <a class="calendario-horario" href="DatosReserva.html">11:00</a>
-                            <a class="calendario-horario" href="DatosReserva.html">11:30</a>
-                        </div>
+                        <h6 id="fila0" class="calendario-titulo"></h6>
+                        <div id="hr0" class="d-flex calendario-tiempo"></div>
                     </div>
                     <div class="d-flex calendario-dias">
-                        <h6 class="calendario-titulo">
-                            <span>Martes</span><br>
-                            <span>03/05</span>
-                        </h6>
+                        <h6 id="fila1" class="calendario-titulo"></h6>
+                        <div id="hr1" class="d-flex calendario-tiempo"></div>
                     </div>
                     <div class="d-flex calendario-dias">
-                        <h6 class="calendario-titulo">
-                            <span>Miércoles</span><br>
-                            <span>04/05</span>
-                        </h6>
-                        <div class="d-flex calendario-tiempo">
-                            <a class="calendario-horario" href="DatosReserva.html">09:30</a>
-                            <a class="calendario-horario" href="DatosReserva.html">10:00</a>
-                            <a class="calendario-horario" href="DatosReserva.html">10:30</a>
-                            <a class="calendario-horario" href="DatosReserva.html">11:00</a>
-                            <a class="calendario-horario" href="DatosReserva.html">11:30</a>
-                        </div>                    
+                        <h6 id="fila2" class="calendario-titulo"></h6>
+                        <div id="hr2" class="d-flex calendario-tiempo"></div>                    
                     </div>
                 </div>
             </div>
@@ -145,7 +126,7 @@
         <p>Copyright © Todos los derechos reservados | Desarrollado por Matias Bellezze</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <script src="../js/reserva.js"></script>
+    <script src="../js/ayuda.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 </html>

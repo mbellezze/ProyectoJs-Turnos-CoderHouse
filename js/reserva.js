@@ -5,6 +5,8 @@ var ubicacion = ["Calle 3 n° 1342"];
 var guardarReserva = [];
 
 
+
+
 /* FUNCIÓN PARA TRAER LOS VALORES DE LA RESERVA */
 function traerDatos() {
     var completo = document.getElementById("nomApe").value;
@@ -54,3 +56,10 @@ function detalles() {
 }
 
 detalles();
+
+
+
+$("#hr1").click(function() {
+    $("#hr1").hide();
+    console.log("boton hide");
+});
