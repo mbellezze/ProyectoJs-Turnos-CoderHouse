@@ -1,116 +1,61 @@
+/* PRELOADER PARA MOSTRAR HASTA QUE CARGA LA PÁGINA */
+$(".preloader").fadeOut(2000);
+
 /* MÉTODO PARA DETECTAR SI EL DOM ESTÁ LISTO PARA USARSE */
 $(document).ready(function(){
-
+    
 /* VARIABLES GLOBALES */
-const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-//const semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
-//const horarios = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
 const guardarConsulta = [];
 const guardarReserva = [];
+const guardarDiaHora = [];
 const URLJSON = '../js/backend/datos.json';
-const APIURL = '../js/backend/reservycons.json';
-
-
-
-/* MÉTODOS PARA TRAER LA FECHA ACTUAL */
-const hoy = new Date();                    /* Objeto con la fecha completa del día de hoy */
-const diaSemHoy = hoy.getDay();            /* Día de la semana actual */
-const numDiaHoy = hoy.getDate();           /* Día actual */
-const numMesHoy = hoy.getMonth();          /* Mes actual */
-const añoHoy = hoy.getFullYear();          /* Año actual */
 
 
 
 /* LLAMADA A LAS FUNCIONES PARA INICIAR EL CALENDARIO */
-escribirCalen();                           /* Función para colocar el mes, los dias de la semana y los horarios */
 escribirServi();                           /* Función para escribir los servicios en el desplegable del formulario */
 escribirObraSoc();                         /* Función para escribir las obras sociales */
-//detalles();                                /* Función para escribir los detalles de la reserva */
+detalles();                                /* Función para escribir los detalles de la reserva */
 
 
-/* FUNCIONES */
-function escribirCalen() {
-    $("#tituloMes").append(`${meses[numMesHoy].toUpperCase()}`);
-    $("#diasCalend").append(() => {
-    $.getJSON(URLJSON, function (respuesta, estado) {
-        if (estado === "success") {
-            let misDatos = respuesta;
-            //for (const dato of misDatos) {
-            for (i = 0; i<3; i++) {
-                $(`#fila${i}`).append(`<span>${misDatos[i].día}</span><br>`);
-                $(`#fila${i}`).append(`<span>${numDiaHoy+i}/`+`${numMesHoy+1}</span>`);
-                for(j = 0; j < 14; j++) {
-                    $(`#hr${i}`).append(`<a href="./DatosReserva.html">${misDatos[i].horarios[j]}</a>`);
-                }
-            }
-            //}
+
+/* LIBRERÍA PARA ESCRIBIR EL CALENDARIO */
+$("#diaHora").flatpickr({
+    inline:true,
+    enableTime: true,
+    minTime: "09:00",
+    maxTime: "17:00",
+    minDate: "today",
+    dateFormat: "j F, Y - H:i",
+    "disable": [
+        function(date) {
+            // return true to disable
+            return (date.getDay() === 0 || date.getDay() === 7);
+
         }
-    });
-    });
-}
-
-
-
-/* Función para volver atras en los dias en los calendarios */
-$("#anterior").click(() => {
-    $.getJSON(URLJSON, function (respuesta, estado) {
-        if (estado === "success") {
-            let misDatos = respuesta;
-            //for (const dato of misDatos) {
-            for (i = 0; i<3; i++) {
-                $(`#fila${i}`).empty();
-                $(`#hr${i}`).empty();
-            }
-            for (i = 0; i<3; i++) {
-                //$(`#fila${i}`).append(`<span>${semana[diaSemHoy+i-2]}</span><br>`);
-                $(`#fila${i}`).append(`<span>${misDatos[i].día}</span><br>`);
-                $(`#fila${i}`).append(`<span>${numDiaHoy+i-1}/`+`${numMesHoy+1}</span>`);
-                for(j = 0; j < 14; j++) {
-                    //$(`#hr${i}`).append(`<a href="./DatosReserva.html">${hora}</a>`);
-                    $(`#hr${i}`).append(`<a id="btnhora" href="./DatosReserva.html">${misDatos[i].horarios[j]}</a>`);
-                }
-            }
-            //}
-        }
-    });
+    ],
+    locale: {
+        firstDayOfWeek: 1,
+        weekdays: {
+          shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+          longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],         
+        }, 
+        months: {
+          shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+          longhand: ['Enero', 'Febreo', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        },
+    }
 });
 
 
-
-/* Función para adelantar los dias en el calendario */
-$("#posterior").click(() => {
-    $.getJSON(URLJSON, function (respuesta, estado) {
-        if (estado === "success") {
-            let misDatos = respuesta;
-            //for (const dato of misDatos) {
-            for (i = 0; i<3; i++) {
-                $(`#fila${i}`).empty();
-                $(`#hr${i}`).empty();
-            }
-            for (i = 0; i<3; i++) {
-                //$(`#fila${i}`).append(`<span>${semana[diaSemHoy+i-2]}</span><br>`);
-                $(`#fila${i}`).append(`<span>${misDatos[i+1].día}</span><br>`);
-                $(`#fila${i}`).append(`<span>${numDiaHoy+i+1}/`+`${numMesHoy+1}</span>`);
-                for(j = 0; j < 14; j++) {
-                    //$(`#hr${i}`).append(`<a href="./DatosReserva.html">${hora}</a>`);
-                    $(`#hr${i}`).append(`<a href="./DatosReserva.html">${misDatos[i].horarios[j]}</a>`);
-                }
-            }
-            //}
-        }
-    });
-});
-
-
-
+/* FUNCIÓN PARA ESCRIBIR LOS SERVICIOS EN EL SELECT */
 function escribirServi() {
     $("select").append(() => {
     $.getJSON(URLJSON, function (respuesta, estado) {
         if (estado === "success") {
             let misDatos = respuesta;
-            for (i = 0; i < misDatos[8].servicios.length; i++) {
-                $("#selectServi").append(`<option>${misDatos[8].servicios[i]}</option>`);
-                //console.log(misDatos[8].servicios[i]);
+            for (i = 0; i < misDatos[1].servicios.length; i++) {
+                $("#selectServi").append(`<option>${misDatos[1].servicios[i]}</option>`);
             }
         }
     });
@@ -118,20 +63,54 @@ function escribirServi() {
 }
 
 
-
+/* FUNCIÓN PARA ESCRIBIR LAS OBRAS SOCIALES EN EL SELECT */
 function escribirObraSoc() {
     $("select").append(() => {
     $.getJSON(URLJSON, function (respuesta, estado) {
         if (estado === "success") {
             let misDatos = respuesta;
-            for (i = 0; i < misDatos[7].obrasocial.length; i++) {
-                $("#selectObraSoc").append(`<option>${misDatos[7].obrasocial[i]}</option>`);
-                    //console.log(misDatos[7].obrasocial[i]);
+            for (i = 0; i < misDatos[0].obrasocial.length; i++) {
+                $("#selectObraSoc").append(`<option>${misDatos[0].obrasocial[i]}</option>`);
                 }
             }
         });
         });
-}
+};
+
+
+
+/* FUNCIÓN PARA CONFIRMAR LA FECHA Y EL HORARIO DE LA RESERVA */
+$("#btnCalend").click((event) => {
+    var diaHora = $(".flatpickr").val();
+    localStorage.setItem("turno", diaHora);
+    guardarDiaHora.push({turno: diaHora});
+    $(location).attr('href','/views/DatosReserva.html');
+    event.preventDefault();
+});
+
+
+/* FUNCIÓN PARA ESCRIBIR LOS DETALLES DE LA RESERVA */
+function detalles() {
+    $("#detalleReserv").append(`<div class="containerDet">
+                                    <div class="divDetalle">
+                                        <h6><u>Profesional</u></h6>
+                                        <p>Esteban Quinteros</p>
+                                    </div>
+                                    <div class="divDetalle">
+                                        <h6><u>Forma de pago</u></h6>
+                                        <p>Efectivo o Débito</p>
+                                    </div>
+                                    <div class="divDetalle">
+                                        <h6><u>Día y Hora</u></h6>
+                                        <p>${localStorage.getItem("turno")}</p>
+                                    </div>
+                                    <div class="divDetalle">
+                                        <h6><u>Ubicación</u></h6>
+                                        <p>Pueyrredón 1300</p>
+                                    </div>
+                                </div>`);
+};
+
 
 
 /* FUNCIÓN PARA ENVIAR Y VALIDAR EL FORMULARIO */
@@ -151,15 +130,22 @@ $("#btnConsul").click((event) => {
         data: JSON.stringify(guardarConsulta),
     })
         .done(function(msg) {
-            alert("Consulta enviada");
+            Swal.fire({
+                icon: 'success',
+                title: 'Consulta enviada!',
+              })
         })
         .fail(function() {
-            alert("Error");
+            Swal.fire({
+                icon: 'error',
+                title: 'Ocurrió un error',
+              })
         })
     console.log(guardarConsulta);
     $("#formulario").trigger("reset");
 });
     
+
 
 /* FUNCIÓN PARA ENVIAR Y VALIDAR EL FORMULARIO DE LA RESERVA*/
 $("#btnReserva").click((event) => {
@@ -179,32 +165,19 @@ $("#btnReserva").click((event) => {
         data: JSON.stringify(guardarReserva),
     })
         .done(function(msg) {
-            alert("Reserva confirmada");
+            Swal.fire({
+                icon: 'success',
+                title: 'Reserva confirmada!',
+              })
         })
         .fail(function() {
-            alert("Error");
+            Swal.fire({
+                icon: 'error',
+                title: 'Ocurrió un error',
+              })
         })
     console.log(guardarReserva);
     $("#formulario").trigger("reset");
-});
-    
-
-
-$("#btnhora").click(function() {
-    console.log("asdasd")
-    var fecha = $("#fila0").val();
-    var hora = $("#hr0").val();
-    $("#detalleReserv").append(`<div>
-                                    <h6><u>Profesional</u></h6>
-                                    <span>Esteban Quiroga</span><br>
-                                    <h6><u>Forma de pago</u></h6>
-                                    <span>Efectivo o Débito</span><br>
-                                    <h6><u>Fecha de la reserva</u></h6>
-                                    <span>${fecha}</span><br>
-                                    <h6><u>Hora de la reservar</u></h6>
-                                    <span>${hora}</span><br>
-                                    <h6><u>Dirección</u></h6>
-                                    <span>Pueyrredon 1320</span>`);
 });
 
 
